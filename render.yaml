@@ -1,0 +1,19 @@
+# Optional: Render.com blueprint. Without a paid disk, uploads/edits reset on redeploy —
+# attach a disk mounted at /var/data and uncomment the env vars below for permanence.
+services:
+  - type: web
+    name: breaktime
+    runtime: node
+    buildCommand: ""
+    startCommand: npm start
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      # - key: DATA_DIR
+      #   value: /var/data
+      # - key: UPLOAD_DIR
+      #   value: /var/data/uploads
+    # disk:
+    #   name: breaktime-data
+    #   mountPath: /var/data
+    #   sizeGB: 1

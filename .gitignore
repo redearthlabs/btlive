@@ -1,0 +1,5 @@
+.env
+data/content.json.bak
+node_modules/
+data/submissions.json
+*.log

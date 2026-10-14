@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Break Time — Port Harcourt creative community</title>
+<meta name="description" content="Break Time — a Port Harcourt creative community and development platform by Red Earth Labs. Next: FEINVILLE, 1 November 2026. RSVP or join the Club.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Break Time — Port Harcourt creative community">
+<meta property="og:description" content="A Port Harcourt creative community and development platform by Red Earth Labs. Next: FEINVILLE — 1 November 2026, Port Harcourt.">
+<meta property="og:image" content="https://www.breaktime.live/assets/feinville-poster-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Breaktime Presents FEINVILLE poster: a many-eyed chrome spider over a red-lit crowd and palm trees, 01.11.26, 4–10PM, DavSavana, Obirikwere, Port Harcourt.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    /* [HEX] PLACEHOLDER: confirm brand red. #FF2B2B = 5.6:1 on black. Use BLACK text on red. */
+    --red:#FF2B2B;
+    --dim:rgba(255,255,255,.64);
+    --line:rgba(255,255,255,.26);
+    --line-strong:rgba(255,255,255,.6);
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"Roboto Mono",monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --display:var(--mono);                /* [FONT] PLACEHOLDER: display face */
+    --pad:20px;
+  }
+  @media(min-width:768px){:root{--pad:40px}}
+
+  *,*::before,*::after{box-sizing:border-box;border-radius:0}
+  [hidden]{display:none!important}
+  html{background:var(--black);color:var(--white);-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+  body{margin:0;font:400 1rem/1.55 var(--sans);overflow-x:hidden;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  body:has(dialog[open]){overflow:hidden}
+  main:focus{outline:none}
+  a{color:inherit}
+  p{margin:0}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono)}
+  .dim{color:var(--dim)}
+  .p{color:var(--red);font-family:var(--mono)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--red);color:var(--black);padding:10px 14px;z-index:100;font:600 .875rem var(--mono)}
+  .skip:focus{left:8px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:1px solid var(--white);background:transparent;color:var(--white);font:600 .9375rem/1 var(--mono);letter-spacing:.02em;text-decoration:none;cursor:pointer}
+  .btn:hover{background:var(--white);color:var(--black)}
+  .btn.red{background:var(--red);border-color:var(--red);color:var(--black)}
+  .btn.red:hover{background:var(--white);border-color:var(--white)}
+  .btn[aria-disabled=true]{cursor:default}
+
+  .site-header{position:sticky;top:0;z-index:40;background:var(--black);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:8px;height:60px}
+  .logo{font:700 1.0625rem/1 var(--display);letter-spacing:.06em;text-decoration:none;margin-right:auto}
+  .nav{display:none;gap:24px;list-style:none;margin:0 16px 0 0;padding:0;font:500 .875rem var(--mono)}
+  .nav a{text-decoration:none;color:var(--dim)}
+  .nav a:hover{color:var(--white)}
+  .nav a[aria-current=page]{color:var(--white);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:8px}
+  .soon{color:var(--red);font-size:.75rem;margin-left:4px}
+  .hdr-cta{display:none}
+  .cart{position:relative;width:44px;height:44px;display:grid;place-items:center;color:var(--white);background:none;border:0;cursor:pointer}
+  .cart b{position:absolute;top:5px;right:3px;font:700 .75rem var(--mono);color:var(--red)}
+  .menu-btn{min-height:44px;padding:0 14px;background:none;border:1px solid var(--line-strong);color:var(--white);font:600 .875rem var(--mono);cursor:pointer}
+  @media(min-width:1100px){
+    .nav{display:flex}
+    .hdr-cta{display:inline-flex}
+    .menu-btn,.dock{display:none}
+    body{padding-bottom:0}
+  }
+
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:35;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:var(--black);border-top:1px solid var(--line)}
+
+  .hero{display:grid;gap:28px;padding:40px 0 48px;border-bottom:1px solid var(--line)}
+  h1{margin:0;font:700 clamp(1.5rem,7vw,4rem)/1.14 var(--display);letter-spacing:-.01em;overflow-wrap:anywhere}
+  h1 .l{display:block}
+  .cursor{display:inline-block;width:.55em;height:1em;background:var(--red);vertical-align:-.12em;margin-left:.2em}
+  .status{display:inline-block;margin-top:24px;padding:12px 14px;border:1px solid var(--line-strong);font:500 .9375rem/1.5 var(--mono)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  /* pre-line: the JS joins log lines with \n, which HTML would otherwise collapse to spaces */
+  .log{padding:16px;border:1px solid var(--line);font:.8125rem/1.8 var(--mono);color:var(--dim);overflow-wrap:anywhere;white-space:pre-line}
+  @media(min-width:1100px){
+    .hero{grid-template-columns:1.6fr 1fr;align-items:end;min-height:calc(100svh - 61px);padding:72px 0}
+  }
+
+  .page-head{padding:40px 0;border-bottom:1px solid var(--line)}
+  .page-head h1{font-size:clamp(1.75rem,6vw,3rem)}
+  .lede{margin-top:16px;max-width:48ch;color:var(--dim)}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:28px}
+  h2{margin:0;font:700 clamp(1.25rem,4vw,2rem)/1.1 var(--display)}
+  h3{margin:0;font:700 1.25rem/1.2 var(--display)}
+
+  .seg{height:var(--dh);width:calc(var(--dh)*10/18);transform:skewX(-8deg);display:block;overflow:visible}
+  .seg .on{fill:var(--white)}
+  .seg .off{fill:rgba(255,255,255,.09)}
+  .digits{display:flex;gap:calc(var(--dh)*.14)}
+  .colon{height:var(--dh);width:calc(var(--dh)*4/18);fill:var(--red);flex:none}
+
+  .ev{display:grid;gap:28px}
+  .poster{aspect-ratio:4/5;width:100%;max-width:360px;border:1px solid var(--line-strong);display:grid;place-items:center;font:.875rem var(--mono);color:var(--dim);overflow:hidden}
+  .poster img{display:block;width:100%;height:100%;object-fit:cover}
+  .ev-body{display:grid;gap:20px;align-content:start}
+  .clock{--dh:clamp(40px,11.5vw,88px);display:flex;align-items:flex-start;gap:clamp(6px,1.4vw,16px)}
+  .unit{display:grid;gap:8px}
+  .ulab{font-size:.75rem;color:var(--dim)}
+  .meta{display:grid;gap:8px;margin:0;font:.9375rem/1.4 var(--mono)}
+  .meta div{display:flex;gap:16px;border-top:1px solid var(--line);padding-top:8px}
+  .meta dt{width:64px;color:var(--dim);flex:none}
+  .meta dd{margin:0}
+  @media(min-width:900px){.ev{grid-template-columns:minmax(0,400px) 1fr;gap:64px}}
+
+  .strip{display:grid;gap:16px;padding:20px;border:1px solid var(--line-strong);align-items:start}
+  .strip .stat{font:600 .9375rem var(--mono);display:flex;align-items:center;gap:10px}
+  .sq{display:inline-block;width:10px;height:10px;border:2px solid var(--red)}
+  @media(min-width:900px){.strip{grid-template-columns:auto 1fr auto;align-items:center;gap:32px}}
+
+  .reports{display:grid;gap:12px}
+  .rcard{border:1px solid var(--line-strong);padding:20px;display:grid;gap:10px;align-content:start}
+  .rcard.empty{border-style:dashed;border-color:var(--line)}
+  .code{font:.8125rem var(--mono);color:var(--red)}
+  @media(min-width:900px){.reports{grid-template-columns:repeat(3,1fr)}.rcard.empty{grid-column:span 2}}
+
+  .counters{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line)}
+  .counters li{padding:22px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .counters li:last-child{border-bottom:0}
+  .num{--dh:44px;display:flex;align-items:flex-start;gap:10px}
+  .plus{font:700 1.5rem/1 var(--mono);color:var(--red)}
+  @media(min-width:900px){
+    .counters{grid-template-columns:repeat(3,1fr)}
+    .counters li{border-bottom:0;border-right:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:32px}
+    .counters li:last-child{border-right:0}
+    .num{--dh:64px}
+  }
+
+  .ph{display:grid;place-items:center;border:1px solid var(--line-strong);font:.8125rem var(--mono);color:var(--dim);text-align:center;padding:8px}
+  /* gallery slideshow: one photo at a time, framed whole and never cropped */
+  .show{display:grid;gap:14px;max-width:860px;margin:0 auto}
+  .stage{position:relative;aspect-ratio:4/5;border:1px solid var(--line-strong);background:var(--black);overflow:hidden}
+  .slide{position:absolute;inset:0;margin:0}
+  .slide img{display:block;width:100%;height:100%;object-fit:contain}
+  .show-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;font:.8125rem var(--mono)}
+  .show-bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px}
+  .show-nav{display:flex;gap:12px;flex-wrap:wrap}
+  /* filmstrip: with 222 photos a dot per photo is unusable, so the strip is the navigator */
+  /* no CSS scroll-behavior here: it would override the JS choice of smooth vs instant */
+  .strip{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin}
+  .strip button{flex:none;width:64px;padding:0;background:none;border:2px solid transparent;cursor:pointer;line-height:0}
+  .strip button:hover{border-color:var(--line-strong)}
+  .strip button[aria-current=true]{border-color:var(--red)}
+  .strip img{width:60px;height:75px;object-fit:cover;display:block;filter:grayscale(.35) brightness(.8)}
+  .strip button[aria-current=true] img{filter:none}
+  figcaption{margin-top:8px;font:.75rem var(--mono);color:var(--dim)}
+  figure{margin:0}
+  @media(max-width:899px){
+    .show-bar{grid-template-columns:1fr;gap:10px}
+    .show-nav{justify-content:space-between}
+    .strip button{width:56px}
+    .strip img{width:52px;height:65px}
+  }
+  @media(min-width:900px){
+    /* size the stage by height and let 4:5 set the width, so the frame hugs the photo */
+    .stage{height:min(70svh,640px);width:auto;aspect-ratio:4/5;justify-self:center}
+    .show{gap:18px}
+    .show-meta{justify-content:space-between}   /* room for a credit line later */
+  }
+  .shop{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 12px}
+  .shop .ph{aspect-ratio:1/1;margin-bottom:10px}
+  .pname{font-weight:600}
+  @media(min-width:900px){.shop{grid-template-columns:repeat(4,1fr);gap:24px}}
+
+  .club-grid{display:grid;gap:28px}
+  @media(min-width:900px){.club-grid{grid-template-columns:1fr 1fr;gap:64px}}
+  form{display:grid;gap:18px}
+  label{display:block;font:500 .875rem var(--mono);margin-bottom:6px}
+  input:not([type=checkbox]),select{width:100%;min-height:48px;background:var(--black);color:var(--white);border:1px solid var(--line-strong);padding:0 12px;font:1rem var(--mono)}
+  input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--red)}
+  .err{color:var(--red);font:.8125rem/1.4 var(--mono);margin-top:6px}
+  .err:empty{display:none}
+  .consent{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font:400 .875rem/1.5 var(--sans)}
+  .consent input{width:24px;height:24px;margin:0;accent-color:var(--red)}
+  .ok{display:grid;gap:14px;border:1px solid var(--red);padding:20px}
+  .narrow{max-width:520px}
+  .rsvp-grid{display:grid;gap:28px;max-width:560px}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .chip{min-height:44px;padding:0 14px;background:transparent;color:var(--white);border:1px solid var(--line-strong);font:500 .875rem var(--mono);cursor:pointer}
+  .chip:hover{border-color:var(--white)}
+  .chip[aria-pressed=true]{background:var(--white);color:var(--black);border-color:var(--white)}
+  .count{font:.8125rem var(--mono);color:var(--dim);margin-bottom:8px}
+  .grp-h{font:700 1rem var(--mono);margin:32px 0 12px}
+  .evlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .evrow{display:grid;gap:6px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .evrow h4{margin:0;font:700 1.0625rem/1.25 var(--display);text-transform:uppercase}
+  .evrow .tag{display:inline-block;font:.75rem var(--mono);border:1px solid var(--line-strong);padding:2px 8px}
+  .evrow a{font:500 .875rem var(--mono)}
+  .empty-line{padding:18px 0;border-bottom:1px solid var(--line);font:.875rem var(--mono);color:var(--dim)}
+  .empty-line a{color:var(--white)}
+  @media(min-width:900px){.evrow{grid-template-columns:130px 1fr 70px 130px 200px;align-items:center;gap:20px}}
+
+  .tree{border:1px solid var(--line);padding:20px;font:.9375rem/1.9 var(--mono);overflow-x:auto}
+  .tree .lock{color:var(--dim)}
+
+  footer{padding:48px 0 32px}
+  .foot{display:grid;gap:32px}
+  .soc{list-style:none;margin:0;padding:0;display:grid;gap:10px;font:.9375rem var(--mono)}
+  .nl{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}
+  .nl .f{min-width:0}
+  @media(min-width:900px){.foot{grid-template-columns:1.2fr 1.2fr 1fr;align-items:start}}
+
+  dialog{color:var(--white);background:var(--black);padding:0;border:1px solid var(--line-strong);max-width:none}
+  dialog::backdrop{background:rgba(0,0,0,.82)}
+  .sheet{width:min(460px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto}
+  .sheet-in{padding:20px;display:grid;gap:18px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .menu{width:100%;height:100%;max-height:none;border:0}
+  .menu[open]{display:flex;flex-direction:column}
+  .menu .top{padding:12px var(--pad);border-bottom:1px solid var(--line);min-height:60px}
+  .menu ul{list-style:none;margin:0;padding:24px var(--pad);display:grid;gap:6px}
+  .menu ul a{display:flex;align-items:baseline;gap:12px;min-height:48px;font:700 1.75rem/1.2 var(--mono);text-decoration:none}
+  .menu ul a[aria-current=page]{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:6px}
+  .menu-foot{margin-top:auto;padding:20px var(--pad) calc(24px + env(safe-area-inset-bottom));display:grid;gap:12px;border-top:1px solid var(--line)}
+  .menu-foot .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+  @media(prefers-reduced-motion:no-preference){
+    .cursor{animation:blink 1.1s steps(1) infinite}
+    .clock.live .colon{animation:blink 1s steps(1) infinite}
+    .slide img{animation:fadein .3s ease-out}
+    @keyframes blink{50%{opacity:0}}
+    @keyframes fadein{from{opacity:0}to{opacity:1}}
+  }
+
+  /* ---- RSVP via Luma ---- */
+  .rsvp-panel{display:grid;gap:14px;align-content:start}
+  .rsvp-panel p{margin:0}
+  .rsvp-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+  .rsvp-actions .btn{text-decoration:none}
+  /* ---- ambient sound toggle ---- */
+  .snd{min-height:44px;padding:0 12px;background:none;border:1px solid var(--line-strong);color:var(--white);font:600 .8125rem var(--mono);cursor:pointer;white-space:nowrap}
+  .snd[aria-pressed=true]{border-color:var(--red);color:var(--red)}
+  .snd:hover{border-color:var(--white);color:var(--white)}
+  @media(max-width:380px){.snd span[aria-hidden]{display:none}}
+
+  /* ---- Why FIENVILLE / About / Ville rules ---- */
+  .why{display:grid;gap:40px;max-width:46rem}
+  .why .stz{display:grid;gap:14px;font:400 1.0625rem/1.55 var(--sans)}
+  .why .stz p,.why .cmd p,.why .sign p{margin:0}
+  .why .big{font:700 clamp(1.625rem,6.5vw,3rem)/1.1 var(--display);letter-spacing:-.01em}
+  .why .cmd{display:grid;gap:2px;font:500 1.0625rem/1.7 var(--mono)}
+  .why .sign{border-top:1px solid var(--line-strong);padding-top:24px;display:grid;gap:18px}
+  .why .sign .t{font:700 clamp(1.5rem,6vw,2.25rem)/1.1 var(--display)}
+  .why .sign .when{font:500 1rem/1.6 var(--mono)}
+  .why .sign .by{font:600 1rem/1.5 var(--mono)}
+  .reports.mv .rcard h3{font-size:1.375rem}
+  @media(min-width:900px){.reports.mv{grid-template-columns:repeat(2,1fr)}}
+  .rules{list-style:none;margin:0;padding:0;max-width:46rem;border-top:1px solid var(--line)}
+  .rules li{display:grid;grid-template-columns:20px 1fr;gap:6px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .rules p{margin:0}
+  .rules b{font-weight:600}
+
+  /* header: keep single-line items; drop the secondary CTA on mid-size screens */
+  .logo,.nav a,.hdr-cta{white-space:nowrap}
+  .nav{gap:18px}
+  @media(min-width:1100px) and (max-width:1279px){a.hdr-cta{display:none}}
+
+  /* honeypot for Netlify Forms: off-screen, never display:none (bots skip those) */
+  .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  form .send-err{margin:0}
+
+  /* ===== Joined from 'Break Time new': photo reel, scroll-reveal, fade-in ===== */
+  .marq{margin:48px 0 0 calc(50% - 50vw);width:100vw;overflow:hidden;padding:0 0 24px;display:grid;gap:12px;border:0}
+  .marq .row{display:flex;gap:12px;width:max-content;will-change:transform}
+  .marq img{width:260px;height:170px;object-fit:cover;border-radius:16px;flex:none}
+  @media(min-width:768px){.marq img{width:420px;height:270px}}
+  .reveal{font:500 clamp(1.1rem,2.4vw,1.6rem)/1.5 var(--display);color:#D7E2EA;max-width:46ch;margin:0 0 32px}
+  .reveal span{opacity:.2;transition:opacity .15s linear}
+  .fi{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.25,.1,.25,1),transform .7s cubic-bezier(.25,.1,.25,1);transition-delay:var(--d,0s)}
+  .fi.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.fi{opacity:1;transform:none;transition:none}.reveal span{opacity:1}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#/" aria-label="Break Time, home">BREAK TIME</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#/radio" data-nav="radio">Radio<span class="soon">soon</span></a></li>
+        <li><a href="#/events" data-nav="events">Events</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#field-reports">Field Reports</a></li>
+        <li><a href="#club">Club</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#shop">Shop</a></li>
+      </ul>
+    </nav>
+    <button class="btn red hdr-cta" type="button" data-open-rsvp>RSVP</button>
+    <a class="btn hdr-cta" href="#club">Join the Club</a>
+    <button class="snd mono" type="button" id="soundBtn" aria-pressed="false" aria-label="Ambient sound"><span aria-hidden="true">&gt; </span>sound: <span id="soundState">off</span></button>
+    <button class="cart" type="button" aria-label="Cart, 0 items" data-ph>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <b aria-hidden="true">0</b>
+    </button>
+    <button class="menu-btn" type="button" id="menuBtn" aria-haspopup="dialog">Menu</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ============ PAGE: HOME ============ -->
+  <div data-page="home">
+    <div class="wrap">
+
+      <div class="hero">
+        <div>
+          <h1>
+            <span class="l"><span class="p" aria-hidden="true">&gt; </span>%%TEXT:heroLine1%%</span>
+            <span class="l"><span class="p" aria-hidden="true">&gt; </span>%%TEXT:heroLine2%%</span>
+            <span class="l"><span class="p" aria-hidden="true">&gt; </span>%%TEXT:heroLine3%%<span class="cursor" aria-hidden="true"></span></span>
+          </h1>
+          <!-- [TAGLINE] PLACEHOLDER: h1 uses the voice example from the brief. -->
+          <p class="status" role="status"><span class="p" aria-hidden="true">&gt; </span>NEXT: <span data-ev-name>FEINVILLE</span> <span data-ev-date>1 Nov 2026, 16:00</span></p>
+          <div class="cta">
+            <button class="btn red" type="button" data-open-rsvp>RSVP</button>
+            <a class="btn" href="#club">Join the Club</a>
+          </div>
+        </div>
+        <div class="log" id="log" aria-hidden="true"></div>
+      </div>
+
+      <section class="marq" id="marq" aria-label="Break Time photo reel"><div class="row" id="mr1"></div><div class="row" id="mr2"></div></section>
+
+      <section id="home-next" aria-labelledby="h-next">
+        <div class="sec-head"><h2 id="h-next"><span class="p" aria-hidden="true">&gt; </span>Next event</h2></div>
+        <div class="ev">
+          <div class="poster"><img id="posterHome" src="__POSTER_SRC__" width="720" height="900" alt="%%POSTER_ALT%%" decoding="async" fetchpriority="high"></div>
+          <div class="ev-body">
+            <p class="mono dim" data-ev-format>Break Time V6</p>
+            <h3 data-ev-name>FEINVILLE</h3>
+            <div class="clock" role="img" aria-label="Countdown starts once the date is confirmed"></div>
+            <dl class="meta">
+              <div><dt>date</dt><dd data-ev-date>1 Nov 2026, 16:00</dd></div>
+              <div><dt>venue</dt><dd data-ev-venue>DavSavana, Obirikwere, Port Harcourt</dd></div>
+            </dl>
+            <div><button class="btn red" type="button" data-open-rsvp>RSVP</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-fienville" aria-labelledby="h-why">
+        <div class="sec-head"><h2 id="h-why"><span class="p" aria-hidden="true">&gt; </span>Why FIENVILLE</h2></div>
+        <div class="why">
+          <div class="stz">
+            <p>%%TEXT:whyIntro1%%</p>
+            <p>%%TEXT:whyIntro2%%</p>
+          </div>
+          <p class="big">%%TEXTBR:whyBig%%</p>
+          <div class="cmd">%%WHY_CMD2%%</div>
+          <div class="stz">
+            <p>%%TEXT:whyExpect%%</p>
+          </div>
+          <div class="cmd">
+            <p>No stiff crowd.</p>
+            <p>No standing at the back.</p>
+            <p>Get involved.</p>
+          </div>
+          <div class="stz">
+            <p>%%TEXT:whyClosing%%</p>
+          </div>
+          <div class="sign">
+            <p class="t">%%TEXTBR:whySignTitle%%</p>
+            <p class="when">%%TEXTBR:whySignWhen%%</p>
+            <p class="by">%%TEXTBR:whySignBy%%</p>
+            <div class="cta">
+              <button class="btn red" type="button" data-open-rsvp>RSVP</button>
+              <a class="btn" href="#rules">Ville rules</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" aria-labelledby="h-about">
+        <div class="sec-head"><h2 id="h-about"><span class="p" aria-hidden="true">&gt; </span>About Break Time</h2></div>
+        <p class="reveal" id="reveal" data-t="%%TEXTATTR:aboutReveal%%"></p>
+        <div class="reports mv">
+          <article class="rcard">
+            <p class="code">mission</p>
+            <h3>%%TEXT:missionTitle%%</h3>
+            <p>%%TEXT:missionBody%%</p>
+          </article>
+          <article class="rcard">
+            <p class="code">vision</p>
+            <h3>%%TEXT:visionTitle%%</h3>
+            <p>%%TEXT:visionBody%%</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="radio-strip" aria-labelledby="h-radio">
+        <div class="sec-head"><h2 id="h-radio"><span class="p" aria-hidden="true">&gt; </span>Radio</h2></div>
+        <div class="strip">
+          <p class="stat"><span class="sq" aria-hidden="true"></span>offline</p>
+          <p>%%TEXT:radioStripText%%</p>
+          <a class="btn" href="#/radio">Get notified</a>
+        </div>
+      </section>
+
+      <section id="field-reports" aria-labelledby="h-fr">
+        <div class="sec-head"><h2 id="h-fr"><span class="p" aria-hidden="true">&gt; </span>Field Reports</h2></div>
+        <div class="reports">
+          <article class="rcard">
+            <p class="code">REL/FR/[###]</p>
+            <h3>IF ART COULD RUN</h3>
+            <p class="mono dim">[TAG] · [TAG]</p>
+            <p>[ONE-SENTENCE SUMMARY]</p>
+            <p class="mono dim"><time datetime="2026-10-04">04.10.2026</time> · Break Time V5 [CONFIRM DETAILS]</p>
+          </article>
+          <article class="rcard empty">
+            <p class="mono"><span class="p" aria-hidden="true">&gt; </span>next report: pending</p>
+            <p class="dim">Event reports and creator spotlights get filed here.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof" aria-labelledby="h-proof">
+        <h2 class="sr-only" id="h-proof">Community in numbers</h2>
+        <ul class="counters">%%STATS%%</ul>
+      </section>
+
+      <section id="gallery" aria-labelledby="h-gal">
+        <div class="sec-head"><h2 id="h-gal"><span class="p" aria-hidden="true">&gt; </span>Gallery</h2></div>
+        <div class="show" id="show" role="group" aria-roledescription="carousel" aria-label="Break Time gallery">
+          <div class="stage" id="stage"></div>
+          <div class="show-meta">
+            <p id="showCap">&#8203;</p>
+            <p class="dim" id="showCount" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div class="show-bar">
+            <div class="show-nav">
+              <button class="btn" type="button" id="showPrev" aria-label="Previous photo">&lt; prev</button>
+              <button class="btn" type="button" id="showNext" aria-label="Next photo">next &gt;</button>
+            </div>
+            <div class="strip" id="showStrip" role="group" aria-label="All photos"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="shop" aria-labelledby="h-shop">
+        <div class="sec-head"><h2 id="h-shop"><span class="p" aria-hidden="true">&gt; </span>Shop</h2></div>
+        <ul class="shop" id="shopList"></ul>
+      </section>
+
+      <section id="club" aria-labelledby="h-club">
+        <div class="club-grid">
+          <div>
+            <h2 id="h-club"><span class="p" aria-hidden="true">&gt; </span>Join the Club</h2>
+            <p style="margin-top:16px;max-width:44ch">%%TEXT:clubBlurb%%</p>
+          </div>
+          <div>
+            <form name="club" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-bt-form novalidate>
+              <input type="hidden" name="form-name" value="club">
+              <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+              <div class="f"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required aria-describedby="c-name-e"><p class="err" id="c-name-e" role="alert"></p></div>
+              <div class="f"><label for="c-email">Email</label><input id="c-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="c-email-e"><p class="err" id="c-email-e" role="alert"></p></div>
+              <div class="f"><label for="c-wa">WhatsApp (optional)</label><input id="c-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="c-wa-e"><p class="err" id="c-wa-e" role="alert"></p></div>
+              <div class="f"><label for="c-craft">Craft</label>
+                <select id="c-craft" name="craft" required aria-describedby="c-craft-e">
+                  <option value="">Pick one</option><option>Music</option><option>Fashion</option><option>Art</option><option>Tech</option><option>Other</option>
+                </select><p class="err" id="c-craft-e" role="alert"></p></div>
+              <div class="f"><label class="consent" for="c-consent" style="font-family:var(--sans)"><input id="c-consent" name="consent" type="checkbox" required aria-describedby="c-consent-e"><span>I agree to Break Time storing my details and contacting me about events and community updates. Unsubscribe anytime.</span></label><p class="err" id="c-consent-e" role="alert"></p></div>
+              <button class="btn red" type="submit">Join the Club</button>
+            </form>
+            <div class="ok" tabindex="-1" hidden>
+              <p class="mono"><span class="p" aria-hidden="true">&gt; </span>welcome to the club.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- PARTNERS STRIP: [OPTIONAL] not built -->
+
+    </div>
+  </div>
+
+  <!-- ============ PAGE: EVENTS ============ -->
+  <div data-page="events" hidden>
+    <div class="wrap">
+
+      <div class="page-head">
+        <h1><span class="p" aria-hidden="true">&gt; </span>events<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="lede">%%TEXT:eventsLede%%</p>
+      </div>
+
+      <section id="ev-next" aria-labelledby="h-evnext">
+        <div class="sec-head"><h2 id="h-evnext"><span class="p" aria-hidden="true">&gt; </span>Next event</h2></div>
+        <div class="ev">
+          <div class="poster"><img data-poster src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="720" height="900" alt="%%POSTER_ALT%%" loading="lazy" decoding="async"></div>
+          <div class="ev-body">
+            <p class="mono dim" data-ev-format>Break Time V6</p>
+            <h3 data-ev-name>FEINVILLE</h3>
+            <div class="clock" role="img" aria-label="Countdown starts once the date is confirmed"></div>
+            <dl class="meta">
+              <div><dt>date</dt><dd data-ev-date>1 Nov 2026, 16:00</dd></div>
+              <div><dt>venue</dt><dd data-ev-venue>DavSavana, Obirikwere, Port Harcourt</dd></div>
+            </dl>
+            <div><button class="btn red" type="button" data-open-rsvp>RSVP</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp-inline" aria-labelledby="h-rsvp">
+        <div class="rsvp-grid">
+          <h2 id="h-rsvp"><span class="p" aria-hidden="true">&gt; </span>RSVP: <span data-ev-name>FEINVILLE</span></h2>
+          <div class="rsvp-panel">
+            <p>Registration runs through Luma. Pick your spot there and it lands in your inbox.</p>
+            <p class="mono dim">%%DETAIL_LINE%%</p>
+            <p class="mono"><span class="p" aria-hidden="true">&gt; </span>NO SWAG NO ENTRY</p>
+            <p class="mono"><a href="#rules">Read the Ville rules</a></p>
+            <div class="rsvp-actions">
+              <a href="%%RSVP_URL%%" class="btn red luma-checkout--button" data-luma-action="checkout" data-luma-event-id="%%LUMA_ID%%" target="_blank" rel="noopener">Register on Luma</a>
+              <a class="btn" href="#" data-ics download="breaktime-feinville-01-11-26.ics">Add to calendar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rules" aria-labelledby="h-rules">
+        <div class="sec-head"><h2 id="h-rules"><span class="p" aria-hidden="true">&gt; </span>Ville rules and regulations</h2></div>
+        <p class="lede" style="margin:0 0 24px">%%TEXT:rulesIntro%%</p>
+        <ul class="rules">%%RULES%%</ul>
+      </section>
+
+      <section id="all-events" aria-labelledby="h-all">
+        <div class="sec-head"><h2 id="h-all"><span class="p" aria-hidden="true">&gt; </span>All events</h2></div>
+        <div class="filters" role="group" aria-label="Filter by format" id="filters"></div>
+        <p class="count" id="count" aria-live="polite"></p>
+
+        <h3 class="grp-h">Upcoming</h3>
+        <ul class="evlist" id="upList" hidden></ul>
+        <p class="empty-line" id="upEmpty"><span id="upMsg"></span> <a href="#club">Join the Club to hear first.</a></p>
+
+        <h3 class="grp-h">Past</h3>
+        <!-- Codes follow the REL/BT/### scheme. Years omitted: flyers show day.month only. [CONFIRM CODES + YEAR] -->
+        <ul class="evlist" id="pastList">%%PAST_EVENTS%%</ul>
+        <p class="empty-line" id="pastEmpty" hidden></p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ============ PAGE: RADIO ============ -->
+  <div data-page="radio" hidden>
+    <div class="wrap">
+
+      <div class="page-head">
+        <h1><span class="p" aria-hidden="true">&gt; </span>radio<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="status" style="margin-top:20px"><span class="sq" aria-hidden="true"></span> status: offline. coming soon.</p>
+        <p class="lede">Mixes, sessions and listening parties from the scene. We'll say when it's on.</p>
+        <!-- [STREAM URL / EMBED] PLACEHOLDER: the live player mounts here once a source exists. -->
+      </div>
+
+      <section aria-labelledby="h-notify">
+        <div class="narrow">
+          <h2 id="h-notify" style="margin-bottom:24px"><span class="p" aria-hidden="true">&gt; </span>Get notified</h2>
+          <form name="radio-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-bt-form novalidate>
+              <input type="hidden" name="form-name" value="radio-notify">
+              <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <div class="f"><label for="rd-email">Email</label><input id="rd-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="rd-email-e"><p class="err" id="rd-email-e" role="alert"></p></div>
+            <div class="f"><label class="consent" for="rd-consent" style="font-family:var(--sans)"><input id="rd-consent" name="consent" type="checkbox" required aria-describedby="rd-consent-e"><span>I agree to Break Time storing my email and contacting me when radio goes live. Unsubscribe anytime.</span></label><p class="err" id="rd-consent-e" role="alert"></p></div>
+            <button class="btn red" type="submit">Notify me</button>
+          </form>
+          <div class="ok" tabindex="-1" hidden>
+            <p class="mono"><span class="p" aria-hidden="true">&gt; </span>noted.</p>
+            <p>We'll email you when radio is on.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-tree">
+        <div class="sec-head"><h2 id="h-tree"><span class="p" aria-hidden="true">&gt; </span>What's being filed</h2></div>
+        <div class="tree" role="img" aria-label="Planned radio sections, all locked for now: live now, up next, archive, and collections for sessions and listening parties.">
+          <div>&gt; ls /radio</div>
+          <div>live-now/ <span class="lock">[locked]</span></div>
+          <div>up-next/ <span class="lock">[locked]</span></div>
+          <div>archive/ <span class="lock">[locked]</span></div>
+          <div>collections/sessions/ <span class="lock">[locked]</span></div>
+          <div>collections/listening-parties/ <span class="lock">[locked]</span></div>
+          <div>&gt; <span class="cursor" aria-hidden="true"></span></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</main>
+
+<footer id="newsletter">
+  <div class="wrap foot">
+    <div>
+      <p class="logo" style="font-size:1.375rem">BREAK TIME</p>
+      <p class="mono dim" style="margin-top:12px">A Red Earth Labs project</p>
+      <p class="mono dim" style="margin-top:4px">Last Saved: [DATE]</p>
+    </div>
+    <div>
+      <form class="nl" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-bt-form novalidate>
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="f"><label for="n-email">Newsletter</label><input id="n-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="n-email-e"><p class="err" id="n-email-e" role="alert"></p></div>
+        <button class="btn" type="submit" style="align-self:start;margin-top:26px">Subscribe</button>
+      </form>
+      <div class="ok" tabindex="-1" hidden>
+        <p class="mono"><span class="p" aria-hidden="true">&gt; </span>subscribed.</p>
+      </div>
+    </div>
+    <ul class="soc">
+      <li><a href="https://instagram.com/breaktime.live" target="_blank" rel="noopener noreferrer">Instagram @breaktime.live</a></li>
+      <li><a href="https://x.com/Breaktimegc" target="_blank" rel="noopener noreferrer">X @breaktimegc</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="dock">
+  <button class="btn red" type="button" data-open-rsvp>RSVP</button>
+  <a class="btn" href="#club">Join the Club</a>
+</div>
+
+<dialog class="menu" id="menu" aria-label="Menu">
+  <div class="top"><span class="mono dim"><span class="p" aria-hidden="true">&gt; </span>menu<span class="cursor" aria-hidden="true"></span></span><button class="btn" type="button" data-close>Close</button></div>
+  <nav aria-label="Menu">
+    <ul>
+      <li><a href="#/"><span class="p" aria-hidden="true">&gt;</span>home</a></li>
+      <li><a href="#/radio" data-nav="radio"><span class="p" aria-hidden="true">&gt;</span>radio <span class="soon" style="font-size:.875rem">soon</span></a></li>
+      <li><a href="#/events" data-nav="events"><span class="p" aria-hidden="true">&gt;</span>events</a></li>
+      <li><a href="#about"><span class="p" aria-hidden="true">&gt;</span>about</a></li>
+      <li><a href="#rules"><span class="p" aria-hidden="true">&gt;</span>ville rules</a></li>
+      <li><a href="#field-reports"><span class="p" aria-hidden="true">&gt;</span>field reports</a></li>
+      <li><a href="#club"><span class="p" aria-hidden="true">&gt;</span>club</a></li>
+      <li><a href="#gallery"><span class="p" aria-hidden="true">&gt;</span>gallery</a></li>
+      <li><a href="#shop"><span class="p" aria-hidden="true">&gt;</span>shop</a></li>
+    </ul>
+  </nav>
+  <div class="menu-foot">
+    <div class="row"><button class="btn red" type="button" data-open-rsvp>RSVP</button><a class="btn" href="#club">Join the Club</a></div>
+    <p class="mono dim" style="font-size:.8125rem">IG @breaktime.live · X @breaktimegc</p>
+  </div>
+</dialog>
+
+<dialog class="sheet" id="rsvp" aria-labelledby="rsvpT">
+  <div class="sheet-in">
+    <div class="top"><span class="mono dim"><span class="p" aria-hidden="true">&gt; </span>rsvp</span><button class="btn" type="button" data-close>Close</button></div>
+    <h2 id="rsvpT" style="font-size:1.375rem"><span data-ev-name>FEINVILLE</span></h2>
+    <div class="rsvp-panel">
+      <p>Registration runs through Luma.</p>
+      <p class="mono dim">%%DETAIL_LINE%%</p>
+      <p class="mono"><span class="p" aria-hidden="true">&gt; </span>NO SWAG NO ENTRY</p>
+            <p class="mono"><a href="#rules">Read the Ville rules</a></p>
+      <div class="rsvp-actions">
+        <a href="%%RSVP_URL%%" class="btn red luma-checkout--button" data-luma-action="checkout" data-luma-event-id="%%LUMA_ID%%" target="_blank" rel="noopener">Register on Luma</a>
+        <a class="btn" href="#" data-ics download="breaktime-feinville-01-11-26.ics">Add to calendar</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* CONTENT CONFIG: the single source of truth for the next event.
+   Set date to null to fall back to the honest "not confirmed" state. */
+const EVENT = __EVENT_JSON__; /* editable in /admin: name, dates, venue, RSVP link, poster */
+const LAGOS = { timeZone: 'Africa/Lagos' };
+const evWhen  = () => new Date(EVENT.date).toLocaleString('en-GB', Object.assign({ dateStyle:'medium', timeStyle:'short' }, LAGOS));
+const evShort = () => new Date(EVENT.date).toLocaleDateString('en-GB', Object.assign({ day:'2-digit', month:'2-digit' }, LAGOS)).replace('/', '.');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let current = 'home';
+
+/* ---------- seven-segment digits (inline SVG, no font) ---------- */
+const SEG = {a:'2,1 3,0 7,0 8,1 7,2 3,2', b:'9,1 10,2 10,7 9,8 8,7 8,2', c:'9,10 10,11 10,16 9,17 8,16 8,11',
+             d:'2,17 3,16 7,16 8,17 7,18 3,18', e:'1,10 2,11 2,16 1,17 0,16 0,11', f:'1,1 2,2 2,7 1,8 0,7 0,2', g:'2,9 3,8 7,8 8,9 7,10 3,10'};
+const MAP = {'0':'abcdef','1':'bc','2':'abdeg','3':'abcdg','4':'bcfg','5':'acdfg','6':'acdefg','7':'abc','8':'abcdefg','9':'abcdfg','-':'g'};
+const digit = ch => { const on = MAP[ch] || '';
+  return '<svg class="seg" viewBox="0 0 10 18" aria-hidden="true" focusable="false">' +
+    Object.keys(SEG).map(k => `<polygon class="${on.includes(k) ? 'on' : 'off'}" points="${SEG[k]}"/>`).join('') + '</svg>'; };
+const digits = s => String(s).split('').map(digit).join('');
+const pad = n => String(n).padStart(2, '0');
+const COLON = '<svg class="colon" viewBox="0 0 4 18" aria-hidden="true" focusable="false"><rect x="1" y="4" width="2.4" height="2.4"/><rect x="1" y="11.6" width="2.4" height="2.4"/></svg>';
+
+/* ---------- countdowns (Home + Events) ---------- */
+const clocks = [...document.querySelectorAll('.clock')].map(el => {
+  el.innerHTML = ['days','hrs','min','sec'].map((u, i) =>
+    `<div class="unit"><div class="digits"></div><span class="ulab mono">${u}</span></div>${i < 3 ? COLON : ''}`).join('');
+  return { el, slots: [...el.querySelectorAll('.digits')] };
+});
+function renderClocks(){
+  let parts = ['--','--','--','--'], label = 'Countdown starts once the date is confirmed';
+  if (EVENT.date){
+    const s = Math.floor(Math.max(0, new Date(EVENT.date) - Date.now()) / 1000);
+    parts = [Math.floor(s/86400), Math.floor(s%86400/3600), Math.floor(s%3600/60), s%60].map(pad);
+    label = `${parts[0]} days, ${parts[1]} hours, ${parts[2]} minutes to go`;
+  }
+  clocks.forEach(c => {
+    c.slots.forEach((el, i) => { if (el.dataset.v !== parts[i]) { el.dataset.v = parts[i]; el.innerHTML = digits(parts[i]); } });
+    c.el.setAttribute('aria-label', label);
+  });
+}
+renderClocks();
+if (EVENT.date){ clocks.forEach(c => c.el.classList.add('live')); setInterval(renderClocks, 1000); }
+if (EVENT.name)   document.querySelectorAll('[data-ev-name]').forEach(n => n.textContent = EVENT.name);
+if (EVENT.format) document.querySelectorAll('[data-ev-format]').forEach(n => n.textContent = EVENT.format);
+if (EVENT.venue)  document.querySelectorAll('[data-ev-venue]').forEach(n => n.textContent = EVENT.venue);
+if (EVENT.date)   document.querySelectorAll('[data-ev-date]').forEach(n => n.textContent = evWhen());
+/* the Events page reuses the Home poster, so the image is only inlined once */
+const posterHome = document.getElementById('posterHome');
+if (posterHome) document.querySelectorAll('img[data-poster]').forEach(img => { img.src = posterHome.getAttribute('src'); });
+
+/* ---------- counters ---------- */
+document.querySelectorAll('.num').forEach(el => {
+  el.innerHTML = `<span class="digits">${digits(el.dataset.n)}</span><span class="plus" aria-hidden="true">+</span>`;
+});
+
+/* ---------- terminal log (real load time, Lagos) ---------- */
+const t = new Date().toLocaleTimeString('en-GB', {timeZone:'Africa/Lagos', hour12:false});
+document.getElementById('log').innerHTML =
+  [`session open, Port Harcourt (WAT)`, `next: ${EVENT.name && EVENT.date ? EVENT.name + ' \u00b7 ' + evWhen() : '[EVENT] [DATE]'}`, `radio: offline, coming soon`, `club: open`]
+  .map(l => `[${t}] ${l}`).join('\n') + '<span class="cursor" aria-hidden="true"></span>';
+
+/* ---------- gallery: 8 frames from the V1 / V1.2 / V3 / V4 editions ----------
+   Inlined as data URIs so the page stays one self-contained file that works offline.
+   For production, swap each src for 'assets/gallery/NNN.jpg' and drop the base64. */
+const GALLERY = __GALLERY_JSON__;
+/* credit: '' — fill in when you have the photographer for each frame */
+(function(){
+  const show = document.getElementById('show'), stage = document.getElementById('stage'),
+        strip = document.getElementById('showStrip'), capEl = document.getElementById('showCap'),
+        countEl = document.getElementById('showCount'), n = GALLERY.length;
+  if (!show || !n) return;
+
+  stage.innerHTML = GALLERY.map((g, i) =>
+    `<figure class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${n}"${i ? ' hidden' : ''}>`
+    + `<img src="${g.src}" alt="${g.alt}" width="480" height="600" loading="lazy" decoding="async">`
+    + `</figure>`).join('');
+
+  strip.innerHTML = GALLERY.map((g, i) =>
+    `<button type="button" data-i="${i}" aria-current="${i === 0}" aria-label="Photo ${i + 1} of ${n}: ${g.caption}">`
+    + `<img src="${g.thumb}" alt="" width="60" height="75" loading="lazy" decoding="async"></button>`).join('');
+
+  const slides = [...stage.querySelectorAll('.slide')], thumbs = [...strip.querySelectorAll('button')];
+  let at = 0;
+
+  function go(i){
+    at = (i + n) % n;                                   /* wraps both ways */
+    slides.forEach((s, j) => { s.hidden = j !== at; });
+    thumbs.forEach((t, j) => t.setAttribute('aria-current', String(j === at)));
+    const g = GALLERY[at];
+    capEl.textContent = g.credit ? `${g.caption} / ${g.credit}` : g.caption;
+    countEl.textContent = `photo ${at + 1} of ${n}`;
+    /* centre the active thumbnail. offsetLeft is measured from the page, not the scroll
+       container, so the delta has to come from bounding rects. */
+    const t = thumbs[at];
+    if (t){
+      const tr = t.getBoundingClientRect(), sr = strip.getBoundingClientRect();
+      const delta = (tr.left - sr.left) - (strip.clientWidth - tr.width) / 2;
+      if (delta) strip.scrollTo({ left: strip.scrollLeft + delta,
+                                  behavior: Math.abs(delta) > strip.clientWidth * 3 ? 'auto' : 'smooth' });
+    }
+  }
+
+  document.getElementById('showPrev').addEventListener('click', () => go(at - 1));
+  document.getElementById('showNext').addEventListener('click', () => go(at + 1));
+  thumbs.forEach(t => t.addEventListener('click', () => go(+t.dataset.i)));
+
+  show.addEventListener('keydown', e => {
+    const k = e.key;
+    if (k === 'ArrowLeft'){ e.preventDefault(); go(at - 1); }
+    else if (k === 'ArrowRight'){ e.preventDefault(); go(at + 1); }
+    else if (k === 'Home'){ e.preventDefault(); go(0); }
+    else if (k === 'End'){ e.preventDefault(); go(n - 1); }
+  });
+
+  let x0 = null;                                        /* swipe on touch */
+  stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive: true});
+  stage.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(at + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive: true});
+
+  go(0);
+})();
+const SHOP = __SHOP_JSON__; /* editable in /admin */
+const escHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('shopList').innerHTML = SHOP.length ? SHOP.map((p, i) => {
+  const n = pad(i + 1);
+  const media = p.image
+    ? `<div class="ph"><img src="${escHtml(p.image)}" alt="${escHtml(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`
+    : `<div class="ph" role="img" aria-label="${escHtml(p.name || 'product ' + n)}">[IMG ${n}]</div>`;
+  const name = p.link ? `<a href="${escHtml(p.link)}" target="_blank" rel="noopener">${escHtml(p.name)}</a>` : escHtml(p.name);
+  return `<li>${media}<p class="mono dim">${escHtml(p.label)}</p><p class="pname">${name}</p><p class="mono">${escHtml(p.price)}</p></li>`;
+}).join('') : '<li><p class="mono dim">&gt; shop restocking soon.</p></li>';
+
+/* ---------- dialogs + RSVP routing ---------- */
+const menu = document.getElementById('menu'), rsvp = document.getElementById('rsvp');
+document.getElementById('menuBtn').addEventListener('click', () => menu.showModal());
+menu.addEventListener('click', e => { if (e.target.closest('a') || e.target.closest('[data-close]')) menu.close(); });
+rsvp.addEventListener('click', e => { if (e.target === rsvp || e.target.closest('[data-close]') || e.target.closest('.luma-checkout--button') || e.target.closest('a[href="#rules"]')) rsvp.close(); });
+function openRsvp(){
+  if (menu.open) menu.close();
+  if (current === 'events') {
+    const sec = document.getElementById('rsvp-inline');
+    sec.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+    const f = sec.querySelector('a.luma-checkout--button');
+    if (f) setTimeout(() => f.focus({preventScroll:true}), reduce ? 0 : 400);
+  } else {
+    rsvp.showModal();
+  }
+}
+document.querySelectorAll('[data-open-rsvp]').forEach(b => b.addEventListener('click', openRsvp));
+document.querySelectorAll('[data-ph]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+/* ---------- forms: inline validation + success state ---------- */
+const RULES = {
+  name:     v => v.trim().length >= 2 || '> error: we need a name',
+  email:    v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || '> error: email looks off. try name@site.com',
+  whatsapp: v => !v.trim() || /^\+?[0-9\s-]{7,16}$/.test(v.trim()) || '> error: numbers only, add country code if abroad',
+  craft:    v => !!v || '> error: pick a craft',
+  consent:  (v, el) => el.checked || '> error: tick the box to continue'
+};
+function check(el){
+  const rule = RULES[el.name];
+  const res = rule ? rule(el.value, el) : true;   /* unknown field name = no rule, never a crash */
+  const err = document.getElementById(el.getAttribute('aria-describedby'));
+  const bad = res !== true;
+  if (err) err.textContent = bad ? res : '';
+  el.setAttribute('aria-invalid', bad);
+  return !bad;
+}
+document.querySelectorAll('form[data-bt-form]').forEach(form => {
+  const fields = [...form.querySelectorAll('input[name]:not([type=hidden]):not([name=bot-field]),select[name]')];
+  fields.forEach(el => {
+    el.addEventListener('blur', () => { if (el.dataset.touched) check(el); });
+    el.addEventListener('input', () => { el.dataset.touched = '1'; if (el.getAttribute('aria-invalid') === 'true') check(el); });
+    el.addEventListener('change', () => { el.dataset.touched = '1'; check(el); });
+  });
+  /* Netlify Forms: posts to the site root; the form name is the hidden "form-name" field */
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const bad = fields.filter(el => !check(el));
+    if (bad.length) { bad[0].focus(); return; }
+    const btn = form.querySelector('button[type=submit]'), label = btn.textContent;
+    let note = form.querySelector('.send-err');
+    if (!note) { note = document.createElement('p'); note.className = 'err send-err'; note.setAttribute('role', 'alert'); form.appendChild(note); }
+    note.textContent = ''; btn.disabled = true; btn.textContent = 'Sending\u2026';
+    try {
+      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                     body: new URLSearchParams(new FormData(form)).toString() });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.hidden = true;
+      const ok = form.parentElement.querySelector('.ok'); ok.hidden = false; ok.focus();
+    } catch (err) {
+      note.textContent = "> error: that didn't send. check your connection and try again.";
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+});
+
+/* ---------- events filter (upcoming + past) ---------- */
+(function(){
+  const FORMATS = ['All','Break Time','Sessions','Listening Party','Watch Party','Open Discussion','Cypher','Meetup'];
+  const box = document.getElementById('filters');
+  box.innerHTML = FORMATS.map(f => `<button class="chip" type="button" data-f="${f}" aria-pressed="${f === 'All'}">${f}</button>`).join('');
+  const chips = [...box.querySelectorAll('.chip')];
+  const upMsg = document.getElementById('upMsg'), upEmpty = document.getElementById('upEmpty'),
+        upList = document.getElementById('upList'), pastEmpty = document.getElementById('pastEmpty'),
+        pastList = document.getElementById('pastList'), count = document.getElementById('count');
+
+  /* the Upcoming row is generated from the EVENT const above, so there is one place to edit */
+  if (EVENT.name && EVENT.date && new Date(EVENT.date) > new Date()){
+    upList.innerHTML =
+      `<li class="evrow" data-format="${EVENT.tag}">
+        <p class="code">${EVENT.code}</p>
+        <div><h4>${EVENT.name}</h4><p class="mono dim">${EVENT.format} \u00b7 ${EVENT.venue}</p></div>
+        <p class="mono"><time datetime="${EVENT.date.slice(0, 10)}">${evShort()}</time></p>
+        <p><span class="tag">${EVENT.tag}</span></p>
+        <a href="#rsvp-inline">RSVP \u2192</a>
+      </li>`;
+  }
+  const rows = [...document.querySelectorAll('.evrow')];
+
+  function apply(f){
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.f === f)));
+    rows.forEach(r => { r.hidden = f !== 'All' && r.dataset.format !== f; });
+    const shown = rows.filter(r => !r.hidden);
+    const up = shown.filter(r => upList.contains(r)).length, past = shown.length - up;
+    upMsg.textContent = f === 'All' ? '> no upcoming events published yet.' : `> no ${f} events scheduled.`;
+    upEmpty.hidden = up > 0; upList.hidden = up === 0;
+    pastEmpty.hidden = past > 0; pastList.hidden = past === 0;
+    pastEmpty.textContent = `> no ${f} events filed yet.`;
+    count.textContent = `> ${up} upcoming, ${past} past event${past === 1 ? '' : 's'} shown`;
+  }
+  chips.forEach(c => c.addEventListener('click', () => apply(c.dataset.f)));
+  apply('All');
+})();
+
+/* ---------- router: #/events, #/radio, #/ and section anchors like #club ---------- */
+const TITLES = {
+  home:   'Break Time — Port Harcourt creative community',
+  events: 'Events — Break Time',
+  radio:  'Radio — Break Time'
+};
+const pages = {};
+document.querySelectorAll('[data-page]').forEach(el => pages[el.dataset.page] = el);
+const mainEl = document.getElementById('main');
+
+function show(name){
+  Object.keys(pages).forEach(k => { pages[k].hidden = k !== name; });
+  document.title = TITLES[name];
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  current = name;
+}
+function route(first){
+  const h = decodeURIComponent(location.hash || '');
+  let name = current, target = null;
+  if (h.startsWith('#/')) {
+    const p = h.slice(2);
+    name = TITLES[p] ? p : 'home';
+  } else if (h.length > 1) {
+    target = document.getElementById(h.slice(1));
+    const holder = target && target.closest('[data-page]');
+    name = holder ? holder.dataset.page : current;   /* e.g. #newsletter / #main stay on the current page */
+  } else {
+    name = 'home';
+  }
+  const changed = name !== current;
+  show(name);
+  if (target) {
+    target.scrollIntoView({behavior: reduce || first ? 'auto' : 'smooth', block: 'start'});
+  } else if (!first || changed) {
+    window.scrollTo(0, 0);
+    if (!first) mainEl.focus({preventScroll:true});
+  }
+}
+window.addEventListener('hashchange', () => route(false));
+route(true);
+
+/* ---------- calendar file, built from EVENT (no separate asset to host) ---------- */
+(function(){
+  const z = d => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Break Time//FEINVILLE//EN','BEGIN:VEVENT',
+    'UID:feinville-01-11-26@breaktime.live','DTSTAMP:' + z(Date.now()),'DTSTART:' + z(EVENT.date),'DTEND:' + z(EVENT.end),
+    'SUMMARY:Breaktime presents ' + EVENT.name,'LOCATION:' + String(EVENT.venueDetail || EVENT.venue || '').replace(/,/g, '\\,'),
+    'DESCRIPTION:NO SWAG NO ENTRY. Register: ' + (EVENT.rsvpUrl || ''),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const url = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  document.querySelectorAll('[data-ics]').forEach(a => { a.href = url; });
+})();
+
+/* ---------- ambient sound: generated in the browser, off until the visitor turns it on ----------
+   Low detuned drone in D minor with a flat second, slow filter drift, a breathing noise bed,
+   long smeared reverb + dark feedback delay, and the odd sinking ghost tone. */
+(function(){
+  const btn = document.getElementById('soundBtn'), label = document.getElementById('soundState');
+  if (!btn) return;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) { btn.hidden = true; return; }
+  let ctx, master, bus, on = false, ghostTimer = null, built = false;
+
+  function impulse(c, sec, decay){
+    const n = Math.floor(c.sampleRate * sec), b = c.createBuffer(2, n, c.sampleRate);
+    for (let ch = 0; ch < 2; ch++){ const d = b.getChannelData(ch);
+      for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, decay); }
+    return b;
+  }
+  function lfo(rate, depth, target, type){
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || 'sine'; o.frequency.value = rate; g.gain.value = depth;
+    o.connect(g); g.connect(target); o.start(); return o;
+  }
+  function build(){
+    ctx = new AC();
+    master = ctx.createGain(); master.gain.value = 0;
+    const comp = ctx.createDynamicsCompressor();
+    master.connect(comp); comp.connect(ctx.destination);
+    bus = ctx.createGain(); bus.gain.value = 1;
+
+    const dry = ctx.createGain(); dry.gain.value = 0.45; bus.connect(dry); dry.connect(master);
+    const verb = ctx.createConvolver(); verb.buffer = impulse(ctx, 7, 2.4);
+    const wet = ctx.createGain(); wet.gain.value = 0.85; bus.connect(verb); verb.connect(wet); wet.connect(master);
+    const dl = ctx.createDelay(2); dl.delayTime.value = 0.67;
+    const dlp = ctx.createBiquadFilter(); dlp.type = 'lowpass'; dlp.frequency.value = 1100;
+    const fb = ctx.createGain(); fb.gain.value = 0.5;
+    bus.connect(dl); dl.connect(dlp); dlp.connect(fb); fb.connect(dl);
+    const dw = ctx.createGain(); dw.gain.value = 0.5; dlp.connect(dw); dw.connect(master);
+
+    /* drone: D2, A2, F3 plus an uneasy E-flat that drifts in and out */
+    [[73.42, 0.07], [110.0, 0.05], [174.61, 0.035], [77.78, 0.025]].forEach(([f, v], i) => {
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 340 + i * 60; lp.Q.value = 5;
+      lfo(0.03 + i * 0.017, 170, lp.frequency);
+      const vg = ctx.createGain(); vg.gain.value = v;
+      if (i === 3) lfo(0.021, v * 0.9, vg.gain);          /* the E-flat swells and recedes */
+      lp.connect(vg); vg.connect(bus);
+      [-9, 8].forEach(cents => {
+        const o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = cents;
+        lfo(0.11 + Math.random() * 0.1, 7, o.detune);         /* seasick pitch wobble */
+        o.connect(lp); o.start();
+      });
+    });
+
+    /* breath: band-passed noise sweeping slowly */
+    const nb = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate), nd = nb.getChannelData(0);
+    for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+    const ns = ctx.createBufferSource(); ns.buffer = nb; ns.loop = true;
+    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 700; bp.Q.value = 6;
+    lfo(0.045, 450, bp.frequency);
+    const ng = ctx.createGain(); ng.gain.value = 0.022; lfo(0.07, 0.014, ng.gain);
+    ns.connect(bp); bp.connect(ng); ng.connect(bus); ns.start();
+    built = true;
+  }
+  /* a thin tone that wavers and sinks, now and then */
+  function ghost(){
+    if (!on) return;
+    const t = ctx.currentTime, notes = [293.66, 349.23, 415.30, 440.0, 466.16];
+    const f = notes[Math.floor(Math.random() * notes.length)];
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 0.94, t + 7);
+    lfo(5 + Math.random() * 2, 4, o.detune);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.035, t + 2.5); g.gain.linearRampToValueAtTime(0, t + 7);
+    o.connect(g); g.connect(bus); o.start(t); o.stop(t + 7.5);
+    ghostTimer = setTimeout(ghost, 5000 + Math.random() * 9000);
+  }
+  function set(next){
+    on = next;
+    btn.setAttribute('aria-pressed', String(on)); label.textContent = on ? 'on' : 'off';
+    if (on){
+      if (!built) build();
+      ctx.resume();
+      const t = ctx.currentTime; master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(0.8, t + 4);
+      clearTimeout(ghostTimer); ghostTimer = setTimeout(ghost, 2500);
+    } else if (built){
+      clearTimeout(ghostTimer);
+      const t = ctx.currentTime; master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(0, t + 1.5);
+      setTimeout(() => { if (!on) ctx.suspend(); }, 1700);
+    }
+  }
+  btn.addEventListener('click', () => set(!on));
+  document.addEventListener('visibilitychange', () => {
+    if (!built || !on) return;
+    if (document.hidden) ctx.suspend(); else ctx.resume();
+  });
+})();
+</script>
+<script>
+/* Joined from 'Break Time new': fade-in on view, gallery photo reel, scroll-driven character reveal.
+   (Its magnet / hero-poster code is omitted - it targeted the new hero, which this merged page does not use.) */
+(function(){
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* fade-in on view */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'50px'});
+  document.querySelectorAll('.fi').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('section:not(.marq) .sec-head,section .ev,section .rcard').forEach(function(el,i){el.classList.add('fi');el.style.setProperty('--d',(i%4)*.1+'s');io.observe(el)});
+}else{
+  document.querySelectorAll('.fi').forEach(function(el){el.classList.add('in')});
+}
+/* marquee from gallery */
+if(typeof GALLERY!=='undefined'){
+  var half=Math.ceil(GALLERY.length/2),rows=[GALLERY.slice(0,half),GALLERY.slice(half)];
+  ['mr1','mr2'].forEach(function(id,i){var row=document.getElementById(id);if(!row)return;
+    for(var k=0;k<3;k++)rows[i].forEach(function(g){var im=new Image();im.src=g.thumb||g.src;im.alt='';im.loading='lazy';row.appendChild(im)})});
+  var sec=document.getElementById('marq'),r1=document.getElementById('mr1'),r2=document.getElementById('mr2'),t=false;
+  function upd(){t=false;if(!sec)return;var top=sec.getBoundingClientRect().top+scrollY,off=(scrollY-top+innerHeight)*.3;
+    if(r1)r1.style.transform='translateX('+(off-200)+'px)';if(r2)r2.style.transform='translateX('+(-(off-200))+'px)'}
+  if(!rm){addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});upd()}
+}
+/* scroll-driven character reveal */
+var rv=document.getElementById('reveal');
+if(rv){var txt=rv.dataset.t;rv.setAttribute('aria-label',txt);
+  txt.split('').forEach(function(c){var sp=document.createElement('span');sp.setAttribute('aria-hidden','true');sp.textContent=c;rv.appendChild(sp)});
+  var cs=rv.children,t2=false;
+  function rup(){t2=false;var r=rv.getBoundingClientRect(),h=innerHeight,start=h*.8,end=h*.2,p=Math.min(1,Math.max(0,(start-r.top)/(start-end+r.height)));
+    var n=cs.length;for(var i=0;i<n;i++){var f=Math.min(1,Math.max(0,p*n*1.15-i));cs[i].style.opacity=.2+.8*Math.min(1,f*3)}}
+  if(!rm){addEventListener('scroll',function(){if(!t2){t2=true;requestAnimationFrame(rup)}},{passive:true});rup()}else{[].forEach.call(cs,function(c){c.style.opacity=1})}
+}
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Break Time — Admin</title>
+<style>
+  :root{--bg:#0c0c0c;--panel:#161616;--line:#333;--txt:#f2f2f2;--dim:#9a9a9a;--red:#ff2b2b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+  header{position:sticky;top:0;z-index:5;background:#000;border-bottom:1px solid var(--line);padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  header .logo{font-weight:800;letter-spacing:.06em}
+  header .logo span{color:var(--red)}
+  main{max-width:1080px;margin:0 auto;padding:20px 16px 80px}
+  .card{background:var(--panel);border:1px solid var(--line);padding:18px;margin:0 0 18px}
+  h1{font-size:1.3rem;margin:0} h2{font-size:1.05rem;margin:0 0 12px}
+  label{display:block;font-size:.8rem;color:var(--dim);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.05em}
+  input,textarea,select{width:100%;background:#000;border:1px solid var(--line);color:var(--txt);padding:10px;font:inherit}
+  textarea{resize:vertical}
+  input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-1px}
+  .btn{display:inline-block;background:#000;border:1px solid #666;color:var(--txt);padding:10px 18px;cursor:pointer;font:600 .85rem ui-monospace,Menlo,monospace;text-decoration:none}
+  .btn:hover{border-color:#fff}
+  .btn.red{background:var(--red);border-color:var(--red);color:#000}
+  .btn.small{padding:6px 10px;font-size:.75rem}
+  .btn.danger:hover{border-color:var(--red);color:var(--red)}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+  .tabs button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#000}
+  .grid{display:grid;gap:12px}
+  @media(min-width:720px){.grid.two{grid-template-columns:1fr 1fr}}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .item{border:1px solid var(--line);padding:14px;margin:0 0 12px;background:#101010}
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .gal figure{margin:0;border:1px solid var(--line);padding:8px;background:#101010}
+  .gal img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#222}
+  .gal input{padding:6px;font-size:.8rem;margin-top:6px}
+  .thumb{width:120px;height:120px;object-fit:cover;border:1px solid var(--line);background:#222}
+  .msg{min-height:1.4em}
+  .err{color:#ff7b7b}.ok{color:#7bd88a}
+  .dim{color:var(--dim)} .small{font-size:.82rem}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  td,th{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+  [hidden]{display:none!important}
+  #toast{position:fixed;right:16px;bottom:16px;background:#000;border:1px solid var(--red);padding:12px 18px;z-index:9}
+</style>
+</head>
+<body>
+
+<div id="loginView">
+  <main style="max-width:420px;padding-top:10vh">
+    <div class="card">
+      <h1>BREAK TIME <span style="color:var(--red)">/ admin</span></h1>
+      <p class="dim">Log in to edit the site. Everything you save here goes live immediately.</p>
+      <form id="loginForm">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="current-password" required>
+        <p class="err msg" id="loginErr" role="alert"></p>
+        <button class="btn red" type="submit" style="width:100%">Log in</button>
+      </form>
+    </div>
+  </main>
+</div>
+
+<div id="appView" hidden>
+  <header>
+    <span class="logo">BREAK TIME <span>/ admin</span></span>
+    <span class="dim small" id="saveState">loaded</span>
+    <span style="flex:1"></span>
+    <a class="btn small" href="/" target="_blank" rel="noopener">View site ↗</a>
+    <button class="btn small" id="logoutBtn" type="button">Log out</button>
+  </header>
+  <main>
+    <nav class="tabs" aria-label="Admin sections">
+      <button class="btn" type="button" data-tab="event" aria-pressed="true">Next event</button>
+      <button class="btn" type="button" data-tab="gallery" aria-pressed="false">Gallery <span id="galCount"></span></button>
+      <button class="btn" type="button" data-tab="past" aria-pressed="false">Past events</button>
+      <button class="btn" type="button" data-tab="shop" aria-pressed="false">Shop</button>
+      <button class="btn" type="button" data-tab="texts" aria-pressed="false">Page text &amp; rules</button>
+      <button class="btn" type="button" data-tab="subs" aria-pressed="false">Form submissions</button>
+    </nav>
+
+    <!-- NEXT EVENT -->
+    <section data-panel="event">
+      <div class="card">
+        <h2>&gt; Next event</h2>
+        <p class="dim small">This drives the hero status line, both “Next event” blocks, the countdown, the Upcoming row and the calendar download. Dates use this format: <span class="mono">2026-11-01T16:00:00+01:00</span> (Port Harcourt time). Clear the start date to hide the countdown/upcoming row.</p>
+        <div class="grid two" id="eventFields"></div>
+        <label>Poster image</label>
+        <div class="row">
+          <img class="thumb" id="posterPreview" alt="Current event poster">
+          <div>
+            <input type="file" id="posterFile" accept="image/*" style="width:auto">
+            <p class="dim small">Upload a new poster, or paste an image address in the “poster” field. Uploading saves automatically.</p>
+          </div>
+        </div>
+        <p class="msg" id="eventMsg" role="status"></p>
+        <button class="btn red" type="button" data-save>Save — publish now</button>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section data-panel="gallery" hidden>
+      <div class="card">
+        <h2>&gt; Gallery</h2>
+        <p class="dim small">Order here = order in the slideshow, photo strip and the scrolling reel under the hero. New uploads go to the front. Captions show under the big photo; alt text helps screen readers and search.</p>
+        <div class="row">
+          <input type="file" id="galFiles" accept="image/*" multiple style="width:auto">
+          <span class="dim small" id="galUploadMsg"></span>
+        </div>
+        <p class="msg" id="galleryMsg" role="status"></p>
+        <div class="row" style="margin:12px 0"><button class="btn red" type="button" data-save>Save — publish now</button></div>
+        <div class="gal" id="galGrid"></div>
+        <div class="row" style="margin-top:12px"><button class="btn red" type="button" data-save>Save — publish now</button></div>
+      </div>
+    </section>
+
+    <!-- PAST EVENTS -->
+    <section data-panel="past" hidden>
+      <div class="card">
+        <h2>&gt; Past events</h2>
+        <p class="dim small">Shown under “All events → Past”, newest first. The format controls the filter chips (e.g. Break Time, Sessions, Listening Party). “Date shown” is the short label like 04.10; the full date is optional. Leave the report link as # until there's a real page.</p>
+        <div id="pastList"></div>
+        <div class="row"><button class="btn" type="button" id="addPast">+ Add past event</button>
+        <button class="btn red" type="button" data-save>Save — publish now</button></div>
+        <p class="msg" id="pastMsg" role="status"></p>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section data-panel="shop" hidden>
+      <div class="card">
+        <h2>&gt; Shop</h2>
+        <p class="dim small">Each item shows its label (e.g. a drop name or “Sold out”), name and price. Add a buy link (Selar, Flutterwave, Instagram DM — anything) and it becomes clickable. Uploading a photo saves automatically.</p>
+        <div id="shopListAdmin"></div>
+        <div class="row"><button class="btn" type="button" id="addShop">+ Add product</button>
+        <button class="btn red" type="button" data-save>Save — publish now</button></div>
+        <p class="msg" id="shopMsg" role="status"></p>
+      </div>
+    </section>
+
+    <!-- TEXTS -->
+    <section data-panel="texts" hidden>
+      <div class="card">
+        <h2>&gt; Page text</h2>
+        <p class="dim small">The main writing on the site. For the “command” lists and sign-off blocks, put one line per row — they'll be shown as separate lines.</p>
+        <div id="textFields"></div>
+        <h2 style="margin-top:28px">&gt; Community in numbers</h2>
+        <div id="statFields"></div>
+        <h2 style="margin-top:28px">&gt; Ville rules</h2>
+        <p class="dim small">Each rule is a bold lead-in plus optional following text.</p>
+        <div id="rulesList"></div>
+        <div class="row"><button class="btn" type="button" id="addRule">+ Add rule</button>
+        <button class="btn red" type="button" data-save>Save — publish now</button></div>
+        <p class="msg" id="textsMsg" role="status"></p>
+      </div>
+    </section>
+
+    <!-- SUBMISSIONS -->
+    <section data-panel="subs" hidden>
+      <div class="card">
+        <h2>&gt; Form submissions</h2>
+        <p class="dim small">Club sign-ups, newsletter and radio-notify forms from the website land here (this replaces Netlify Forms now the site runs on this backend).</p>
+        <div class="row">
+          <button class="btn" type="button" id="refreshSubs">Refresh</button>
+          <a class="btn" href="/api/admin/submissions.csv">Download CSV</a>
+          <button class="btn danger" type="button" id="clearSubs">Clear all</button>
+          <span class="dim small" id="subsCount"></span>
+        </div>
+        <div style="overflow-x:auto;margin-top:12px"><table id="subsTable"></table></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast" hidden></div>
+
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+let state = null, dirty = false;
+
+function toast(msg, ok = true) {
+  const t = $('#toast'); t.textContent = msg; t.style.borderColor = ok ? 'var(--red)' : '#ff7b7b'; t.hidden = false;
+  clearTimeout(t._h); t._h = setTimeout(() => t.hidden = true, 3200);
+}
+function markDirty() { dirty = true; $('#saveState').textContent = '● unsaved changes'; }
+async function api(path, opts = {}) {
+  const res = await fetch(path, { headers: { 'Content-Type': 'application/json' }, ...opts });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+  return data;
+}
+async function saveAll(msgEl) {
+  try {
+    const r = await api('/api/admin/content', { method: 'PUT', body: JSON.stringify(state) });
+    dirty = false; $('#saveState').textContent = 'saved ' + new Date(r.savedAt).toLocaleTimeString();
+    toast('Saved — the live site is updated ✓');
+    if (msgEl) { msgEl.textContent = 'Saved. Live now.'; msgEl.className = 'msg ok'; }
+  } catch (e) {
+    toast('Save failed: ' + e.message, false);
+    if (msgEl) { msgEl.textContent = 'Error: ' + e.message; msgEl.className = 'msg err'; }
+  }
+}
+async function upload(file, kind) {
+  const fd = new FormData(); fd.append('file', file);
+  const res = await fetch('/api/admin/upload?kind=' + kind, { method: 'POST', body: fd });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+  return data.url;
+}
+const move = (arr, i, d) => { const j = i + d; if (j < 0 || j >= arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; markDirty(); };
+
+/* ---------- field specs ---------- */
+const EVENT_FIELDS = [
+  ['name', 'Event name', 'text'], ['format', 'Format (e.g. Break Time V6)', 'text'],
+  ['date', 'Start — 2026-11-01T16:00:00+01:00', 'text'], ['end', 'End — 2026-11-01T22:00:00+01:00', 'text'],
+  ['venue', 'Venue (short)', 'text'], ['code', 'Code (e.g. REL/BT/006)', 'text'],
+  ['venueDetail', 'Venue (full address, for RSVP/calendar)', 'text'], ['tag', 'Filter tag (e.g. Break Time)', 'text'],
+  ['detailLine', 'Detail line shown by RSVP buttons', 'text'], ['rsvpUrl', 'RSVP / Luma event link', 'url'],
+  ['poster', 'Poster image address', 'text'], ['posterAlt', 'Poster description (alt text)', 'text'],
+];
+const TEXT_FIELDS = [
+  ['heroLine1', 'Hero line 1', 1], ['heroLine2', 'Hero line 2', 1], ['heroLine3', 'Hero line 3', 1],
+  ['whyIntro1', 'Why FEINVILLE — intro 1', 2], ['whyIntro2', 'Why FEINVILLE — intro 2', 3],
+  ['whyBig', 'Why — big statement (one line per row)', 2], ['whyCommands', 'Why — “Come to…” list (one per row)', 6],
+  ['whyExpect', 'Why — what to expect', 3], ['whyCommands2', 'Why — second list (one per row)', 3],
+  ['whyClosing', 'Why — closing line', 2], ['whySignTitle', 'Why — sign-off title (one line per row)', 2],
+  ['whySignWhen', 'Why — sign-off date/time (one line per row)', 3], ['whySignBy', 'Why — sign-off credit (one line per row)', 2],
+  ['aboutReveal', 'About — scroll-reveal paragraph', 4],
+  ['missionTitle', 'About — mission heading', 1], ['missionBody', 'About — mission text', 3],
+  ['visionTitle', 'About — vision heading', 1], ['visionBody', 'About — vision text', 3],
+  ['clubBlurb', 'Club — blurb beside the form', 2], ['radioStripText', 'Radio strip text (home)', 2],
+  ['eventsLede', 'Events page — intro line', 1], ['rulesIntro', 'Rules — intro line', 1],
+];
+const FORMATS = ['Break Time','Sessions','Listening Party','Watch Party','Open Discussion','Cypher','Meetup'];
+
+/* ---------- rendering ---------- */
+function renderEvent() {
+  $('#eventFields').innerHTML = EVENT_FIELDS.map(([k, label, type]) =>
+    `<div><label for="ev-${k}">${label}</label><input id="ev-${k}" data-ev="${k}" type="${type === 'url' ? 'text' : 'text'}" value="${esc(state.event[k])}"></div>`).join('');
+  $('#posterPreview').src = state.event.poster || '';
+}
+function renderGallery() {
+  $('#galCount').textContent = `(${state.gallery.length})`;
+  $('#galGrid').innerHTML = state.gallery.map((g, i) => `
+    <figure>
+      <img loading="lazy" src="${esc(g.thumb || g.src)}" alt="">
+      <input data-gal="${i}:caption" value="${esc(g.caption)}" placeholder="Caption" aria-label="Caption">
+      <input data-gal="${i}:alt" value="${esc(g.alt)}" placeholder="Alt text" aria-label="Alt text">
+      <div class="row" style="margin-top:6px">
+        <button class="btn small" type="button" data-gmove="${i}:-1" title="Move earlier">←</button>
+        <button class="btn small" type="button" data-gmove="${i}:1" title="Move later">→</button>
+        <button class="btn small danger" type="button" data-gdel="${i}" title="Remove photo">✕</button>
+      </div>
+    </figure>`).join('');
+}
+function renderPast() {
+  $('#pastList').innerHTML = state.pastEvents.map((p, i) => `
+    <div class="item">
+      <div class="grid two">
+        <div><label>Title</label><input data-past="${i}:title" value="${esc(p.title)}"></div>
+        <div><label>Code</label><input data-past="${i}:code" value="${esc(p.code)}"></div>
+        <div><label>Meta (format · venue)</label><input data-past="${i}:meta" value="${esc(p.meta)}"></div>
+        <div><label>Format (filter)</label><input data-past="${i}:format" list="fmtList" value="${esc(p.format)}"></div>
+        <div><label>Date shown (e.g. 04.10)</label><input data-past="${i}:dateLabel" value="${esc(p.dateLabel)}"></div>
+        <div><label>Full date (optional, 2026-10-04)</label><input data-past="${i}:dateISO" value="${esc(p.dateISO)}"></div>
+        <div><label>Report link text</label><input data-past="${i}:linkText" value="${esc(p.linkText)}"></div>
+        <div><label>Report link URL (# if none yet)</label><input data-past="${i}:linkUrl" value="${esc(p.linkUrl)}"></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button class="btn small" type="button" data-pmove="${i}:-1">↑ up</button>
+        <button class="btn small" type="button" data-pmove="${i}:1">↓ down</button>
+        <button class="btn small danger" type="button" data-pdel="${i}">Delete</button>
+      </div>
+    </div>`).join('') + '<datalist id="fmtList">' + FORMATS.map(f => `<option value="${f}">`).join('') + '</datalist>';
+}
+function renderShop() {
+  $('#shopListAdmin').innerHTML = state.shop.map((p, i) => `
+    <div class="item">
+      <div class="row"><img class="thumb" src="${esc(p.image)}" alt="" ${p.image ? '' : 'hidden'}>
+      <div style="flex:1;min-width:220px"><label>Photo</label>
+      <input type="file" accept="image/*" data-shopfile="${i}">
+      <input data-shop="${i}:image" value="${esc(p.image)}" placeholder="…or paste image address" style="margin-top:6px"></div></div>
+      <div class="grid two">
+        <div><label>Name</label><input data-shop="${i}:name" value="${esc(p.name)}"></div>
+        <div><label>Price</label><input data-shop="${i}:price" value="${esc(p.price)}"></div>
+        <div><label>Label (drop / sold out…)</label><input data-shop="${i}:label" value="${esc(p.label)}"></div>
+        <div><label>Buy link (optional)</label><input data-shop="${i}:link" value="${esc(p.link)}"></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button class="btn small" type="button" data-smove="${i}:-1">↑ up</button>
+        <button class="btn small" type="button" data-smove="${i}:1">↓ down</button>
+        <button class="btn small danger" type="button" data-sdel="${i}">Delete</button>
+      </div>
+    </div>`).join('');
+}
+function renderTexts() {
+  $('#textFields').innerHTML = TEXT_FIELDS.map(([k, label, rows]) => rows <= 1
+    ? `<label for="tx-${k}">${label}</label><input id="tx-${k}" data-text="${k}" value="${esc(state.texts[k])}">`
+    : `<label for="tx-${k}">${label}</label><textarea id="tx-${k}" data-text="${k}" rows="${rows}">${esc(state.texts[k])}</textarea>`).join('');
+  $('#statFields').innerHTML = state.stats.map((s, i) => `
+    <div class="grid two item">
+      <div><label>Number ${i + 1}</label><input data-stat="${i}:value" type="number" value="${esc(s.value)}"></div>
+      <div><label>Label ${i + 1}</label><input data-stat="${i}:label" value="${esc(s.label)}"></div>
+    </div>`).join('');
+  $('#rulesList').innerHTML = state.rules.map((r, i) => `
+    <div class="item"><div class="grid two">
+      <div><label>Bold lead-in</label><input data-rule="${i}:title" value="${esc(r.title)}"></div>
+      <div><label>Following text</label><input data-rule="${i}:body" value="${esc(r.body)}"></div>
+    </div><div class="row" style="margin-top:8px">
+      <button class="btn small" type="button" data-rmove="${i}:-1">↑ up</button>
+      <button class="btn small" type="button" data-rmove="${i}:1">↓ down</button>
+      <button class="btn small danger" type="button" data-rdel="${i}">Delete</button>
+    </div></div>`).join('');
+}
+function renderAll() { renderEvent(); renderGallery(); renderPast(); renderShop(); renderTexts(); }
+
+async function loadSubs() {
+  const subs = await api('/api/admin/submissions');
+  $('#subsCount').textContent = subs.length + ' total';
+  $('#subsTable').innerHTML = '<tr><th>When</th><th>Form</th><th>Details</th></tr>' + subs.slice().reverse().map(s =>
+    `<tr><td class="mono small">${esc(new Date(s.at).toLocaleString())}</td><td>${esc(s.form)}</td><td>${esc(Object.entries(s.data || {}).map(([k, v]) => k + ': ' + v).join(' · '))}</td></tr>`).join('');
+}
+
+/* ---------- wiring ---------- */
+document.addEventListener('input', e => {
+  const el = e.target, d = el.dataset;
+  const set = (obj, spec) => { const [i, k] = spec.split(':'); obj[+i][k] = el.value; markDirty(); };
+  if (d.ev) { state.event[d.ev] = el.value; if (d.ev === 'poster') $('#posterPreview').src = el.value; markDirty(); }
+  else if (d.text) { state.texts[d.text] = el.value; markDirty(); }
+  else if (d.gal) set(state.gallery, d.gal);
+  else if (d.past) set(state.pastEvents, d.past);
+  else if (d.shop) set(state.shop, d.shop);
+  else if (d.rule) set(state.rules, d.rule);
+  else if (d.stat) { const [i, k] = d.stat.split(':'); state.stats[+i][k] = k === 'value' ? (+el.value || 0) : el.value; markDirty(); }
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const spec = (v) => v.split(':').map(Number);
+  if (b.dataset.save !== undefined && b.hasAttribute('data-save')) saveAll(b.closest('.card').querySelector('.msg'));
+  else if (b.dataset.gmove) { const [i, d] = spec(b.dataset.gmove); move(state.gallery, i, d); renderGallery(); }
+  else if (b.dataset.gdel && confirm('Remove this photo from the gallery? (The file stays on the server.)')) { state.gallery.splice(+b.dataset.gdel, 1); markDirty(); renderGallery(); }
+  else if (b.dataset.pmove) { const [i, d] = spec(b.dataset.pmove); move(state.pastEvents, i, d); renderPast(); }
+  else if (b.dataset.pdel && confirm('Delete this past event?')) { state.pastEvents.splice(+b.dataset.pdel, 1); markDirty(); renderPast(); }
+  else if (b.dataset.smove) { const [i, d] = spec(b.dataset.smove); move(state.shop, i, d); renderShop(); }
+  else if (b.dataset.sdel && confirm('Delete this product?')) { state.shop.splice(+b.dataset.sdel, 1); markDirty(); renderShop(); }
+  else if (b.dataset.rmove) { const [i, d] = spec(b.dataset.rmove); move(state.rules, i, d); renderTexts(); }
+  else if (b.dataset.rdel && confirm('Delete this rule?')) { state.rules.splice(+b.dataset.rdel, 1); markDirty(); renderTexts(); }
+});
+document.addEventListener('change', async e => {
+  const el = e.target;
+  try {
+    if (el.id === 'posterFile' && el.files[0]) {
+      toast('Uploading poster…');
+      state.event.poster = await upload(el.files[0], 'poster');
+      renderEvent(); await saveAll($('#eventMsg'));
+    } else if (el.id === 'galFiles' && el.files.length) {
+      $('#galUploadMsg').textContent = 'Uploading ' + el.files.length + ' photo(s)…';
+      for (const f of el.files) {
+        const url = await upload(f, 'gallery');
+        state.gallery.unshift({ id: uid('g'), src: url, thumb: url, caption: 'Break Time', credit: '', alt: '' });
+      }
+      el.value = ''; $('#galUploadMsg').textContent = '';
+      renderGallery(); await saveAll($('#galleryMsg'));
+    } else if (el.dataset.shopfile !== undefined && el.files[0]) {
+      toast('Uploading product photo…');
+      state.shop[+el.dataset.shopfile].image = await upload(el.files[0], 'shop');
+      renderShop(); await saveAll($('#shopMsg'));
+    }
+  } catch (err) { toast('Upload failed: ' + err.message, false); }
+});
+$('#addPast').addEventListener('click', () => { state.pastEvents.unshift({ id: uid('past-'), code: 'REL/BT/', title: '', meta: '', dateLabel: '', dateISO: '', format: 'Break Time', linkText: 'Field report', linkUrl: '#' }); markDirty(); renderPast(); });
+$('#addShop').addEventListener('click', () => { state.shop.push({ id: uid('prod-'), name: '', price: '₦', label: '', image: '', link: '' }); markDirty(); renderShop(); });
+$('#addRule').addEventListener('click', () => { state.rules.push({ title: '', body: '' }); markDirty(); renderTexts(); });
+$('#refreshSubs').addEventListener('click', loadSubs);
+$('#clearSubs').addEventListener('click', async () => { if (confirm('Clear ALL form submissions? This cannot be undone.')) { await api('/api/admin/submissions', { method: 'DELETE' }); loadSubs(); } });
+document.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-tab]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  document.querySelectorAll('[data-panel]').forEach(pn => pn.hidden = pn.dataset.panel !== b.dataset.tab);
+  if (b.dataset.tab === 'subs') loadSubs();
+}));
+window.addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
+
+/* ---------- login ---------- */
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  try {
+    await api('/api/login', { method: 'POST', body: JSON.stringify({ password: $('#pw').value }) });
+    await enter();
+  } catch (err) { $('#loginErr').textContent = err.message; }
+});
+$('#logoutBtn').addEventListener('click', async () => { await api('/api/logout', { method: 'POST' }); location.reload(); });
+async function enter() {
+  state = await api('/api/admin/content');
+  $('#loginView').hidden = true; $('#appView').hidden = false;
+  renderAll(); $('#saveState').textContent = 'loaded';
+}
+(async () => { const me = await api('/api/me').catch(() => ({ admin: false })); if (me.admin) enter(); })();
+</script>
+</body>
+</html>
